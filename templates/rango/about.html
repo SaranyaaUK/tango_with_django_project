@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Rango says...</h1>
+        <div>
+            here is the about page. <br/>
+            <strong>{{boldmessage}} <em> {{emphasismessage}} </em> </strong> 
+        </div>
+
+        <div>
+            <a href="/rango/">Index</a> <br/>
+            <img src="{% static 'images/Elsa.jpg' %}" alt="Picture of Elsa"/> <br/>
+            <img src="{{ MEDIA_URL }}cats.jpg" alt="Picture of a cat wearing a hat"/>
+        </div>
+    </body>
+</html>

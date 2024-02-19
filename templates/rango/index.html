@@ -1,20 +1,53 @@
-<!DOCTYPE html>
-
+{% extends 'rango/base.html' %}
 {% load static %}
-<hmtl>
-    <head>
-        <title>Rango</title>
-    </head>
 
-    <body>
+
+{% block title_block %}
+    Rango
+{% endblock %}
+
+{% block body_block %}
         <h1>Rango says...</h1>
         <div>
-            hey there partner! <br />
+            {% if user.is_authenticated %}
+                howdy {{ user.username }}! <br />
+            {% else %}
+                hey there partner! <br />
+            {% endif %}
+            
             <strong>{{ boldmessage }}</strong><br />
         </div>
         <div>
-            <a href="/rango/about/">About</a><br />
+            {% if categories %}
+            <h2>Most Liked Categories</h2>
+            <ul>
+                {% for category in categories %}
+                <li>
+                    <!-- Now we add a hyperlink to the category-->
+                    <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <strong>There are no categories present.</strong>
+            {% endif %}
+        </div>
+        <div>
+            {% if pages %}
+            <h2>Most Viewed Pages</h2>
+            <ul>
+                {% for page in pages %}
+                <li>
+                    <!-- Now we add a hyperlink to the category-->
+                    <a href="{{ page.url }}">{{ page.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <strong>There are no pages present.</strong>
+            {% endif %}
+        </div>
+        <div>
             <img src="{% static 'images/Elsa.jpg' %}" alt="Picture of Elsa" />
         </div>
-    </body>
-</hmtl>
+{% endblock %}

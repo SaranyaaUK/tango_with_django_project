@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+{% load rango_template_tags%}
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>Rango -
+        {% block title_block %}
+        How to Tango with Django!
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <div>
+        <!-- Page Specific content goes here-->
+        {% block body_block %}
+        {% endblock %}
+    </div>
+    <div>
+        {% block sidebar_block %}
+            {% get_category_list category%}
+        {% endblock %}
+    </div>
+    <hr/>
+    <div>
+        <ul>
+            {% if user.is_authenticated %}
+                <!-- If a user is logged in -->
+                <li><a href="{% url 'rango:restricted' %}">Restricted Page</a></li>
+                <li><a href="{% url 'rango:logout' %}">Logout</a></li>
+                <li><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
+            {% else %}
+                <!-- If not logged in show these-->
+                <li><a href="{% url 'rango:register' %}">Sign Up</a></li>
+                <li><a href="{% url 'rango:login' %}">Login</a></li>
+            {% endif %}
+            <!-- The below links are available to both anonymous and logged in users -->          
+            <li><a href="{% url 'rango:about' %}">About</a></li>
+            <li><a href="{% url 'rango:index' %}">Index</a></li>           
+        </ul>
+    </div>
+
+</body>
+
+</html>

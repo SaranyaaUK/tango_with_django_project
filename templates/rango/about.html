@@ -2,19 +2,23 @@
 {% load static %}
 
 {% block title_block %}
-    About Rango
+About Rango
 {% endblock %}
 
 {% block body_block %}
-    <h1>Rango says...</h1>
-    <p>Visits: {{ visits }}</p>
-    <div>
-        here is the about page. <br />
-        <strong>{{boldmessage}} <em> {{emphasismessage}} </em> </strong>
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
+        <p>Visits: {{ visits }}</p>
+        <div>
+            here is the about page. <br />
+            <strong>{{boldmessage}} <em> {{emphasismessage}} </em> </strong>
+        </div>
     </div>
+</div>
 
-    <div>
-        <img src="{% static 'images/Elsa.jpg' %}" alt="Picture of Elsa" /> <br />
-        <img src="{{ MEDIA_URL }}cats.jpg" alt="Picture of a cat wearing a hat" />
-    </div>
+<div>
+    <img src="{% static 'images/Elsa.jpg' %}" alt="Picture of Elsa" /> <br />
+    <img src="{{ MEDIA_URL }}cats.jpg" alt="Picture of a cat wearing a hat" />
+</div>
 {% endblock %}
